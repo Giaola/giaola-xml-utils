@@ -13,6 +13,8 @@ with open('HISTORY.rst') as history_file:
 
 requirements = [
     'Click>=6.0',
+    'lxml==4.1.1',
+    'future'
     # TODO: put package requirements here
 ]
 
