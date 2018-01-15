@@ -39,7 +39,8 @@ setup(
     packages=find_packages(include=['giaola_xml_utils']),
     entry_points={
         'console_scripts': [
-            'giaola_xml_utils=giaola_xml_utils.cli:main'
+            'giaola_xml_utils=giaola_xml_utils.cli:main',
+            'giaola_xml_utils_find=giaola_xml_utils.cli:find'
         ]
     },
     include_package_data=True,
