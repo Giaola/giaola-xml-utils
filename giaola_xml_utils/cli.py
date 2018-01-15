@@ -20,12 +20,13 @@ def main(args=None):
 @click.option('-value', 'value', required=True, help='Value to search.')
 @click.option('-file', 'file_path', required=True, help='File to search')
 def find(element, path, value, file_path):
+    import json
     parser = XMLParser(file_path, element)
     path = [token.strip() for token in path.split(',')]
     for element_dict in parser:
         for token in path:
             if element_dict.get(token) == value:
-                click.echo(element_dict)
+                click.echo(json.dumps(element_dict))
                 continue
 
 
