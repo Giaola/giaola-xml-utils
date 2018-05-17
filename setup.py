@@ -30,7 +30,7 @@ test_requirements = [
 
 setup(
     name='giaola_xml_utils',
-    version='0.2.0',
+    version='0.4.0',
     description="XML utility functions",
     long_description=readme + '\n\n' + history,
     author="Marsel Tzatzo",

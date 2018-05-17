@@ -15,15 +15,20 @@ logger = logging.getLogger(__name__)
 
 class XMLParser(object):
 
-    def __init__(self, source, tag):
+    def __init__(self, source, tag, recover=True, exclude=None):
+        """"""
         self.source = source
         self.tag = tag
+        self.recover = recover
+        self.exclude = exclude
+        if self.exclude and not isinstance(self.exclude, list):
+            self.exclude = list(self.exclude)
 
     def __iter__(self):
         context = ET.iterparse(source=self.source,
                                events=('end',),
                                huge_tree=True,
-                               recover=True)
+                               recover=self.recover)
         iterator = iter(context)
 
         for event, elem in iterator:
@@ -35,6 +40,10 @@ class XMLParser(object):
 
                     while elem.getprevious() is not None:
                         del elem.getparent()[0]
+
+                    for key in self.exclude:
+                        if key in element_dict:
+                            del element_dict[key]
 
                     yield (element_dict)
 
